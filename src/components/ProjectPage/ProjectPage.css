@@ -1,0 +1,28 @@
+
+
+.github-logo img {
+    margin-top: 20px;
+    width: 100px;
+    opacity: 1;
+}
+
+.github-logo {
+    background-image: linear-gradient(to top, rgba(0, 150, 136,.4), rgba(0, 150, 136,1));
+    /* background-color: linear-gradient(rgba(199, 199, 199, 0.1), rgba(114, 114, 114, 0.9)); */
+    /* opacity: .7; */
+    height: 225px;
+    border-bottom: 1px solid rgb(170, 170, 170);
+    color: white;
+}
+
+.hero-content {
+    background-image: linear-gradient(rgba(212, 212, 212, 0.4), rgba(138, 138, 138, 0.9)), url(img/P10003462.JPG);
+    background-attachment: fixed;
+    background-size: fit;
+    background-position: center top;
+    background-repeat: no-repeat;
+    text-align: center;
+    height: 100vh;
+    /* background-color: #ececec; */
+    
+}

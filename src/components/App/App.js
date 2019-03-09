@@ -30,6 +30,7 @@ const theme = createMuiTheme({
       'Arial',
       'sans-serif',
     ].join(','),
+    fontSize: '12',
   },
 });
 
