@@ -38,7 +38,7 @@ class ProjectNavBar extends Component {
                             <MenuIcon />
                         </IconButton>
                         <Typography variant="h6" color="inherit" className={classes.grow}>
-                           My Github
+                           My Github Portfoilio
                         </Typography>
                     </Toolbar>
                 </AppBar>

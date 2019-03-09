@@ -4,6 +4,7 @@ import { withStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
 import ProjectNavBar from '../ProjectPage/ProjectNavBar';
 import '../ProjectPage/ProjectPage.css';
+import ProjectList from '../ProjectPage/ProjectList';
 
 const styles = {
     root: {
@@ -25,15 +26,16 @@ class ProjectPage extends Component {
 
         return (
             <>
-            <div>
-                <ProjectNavBar />
-            </div>
-            <div className="hero-content">
+                <div>
+                    <ProjectNavBar />
+                </div>
+                <div className="hero-content">
                     <div className="github-logo"><img src="/images/GitHub-Mark-Light-120px-plus.png" alt="github logo" />
-                    <Typography variant="h6" color="inherit" className={classes.grow}><h2>TONY BRAASCH</h2></Typography>
+                        <Typography variant="h5" color="inherit" className={classes.grow}>TONY BRAASCH</Typography>
                     </div>
-
-            </div>
+                    <ProjectList />
+                </div>
+                
             </>
         );
     }
