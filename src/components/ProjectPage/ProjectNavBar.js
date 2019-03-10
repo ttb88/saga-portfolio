@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { HashRouter as Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import '../ProjectPage/ProjectNavBar.css';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';

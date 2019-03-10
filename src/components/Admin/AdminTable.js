@@ -64,7 +64,7 @@ class AdminTable extends Component {
                                 <CustomTableCell component="th" scope="row">
                                     {row.name}
                                 </CustomTableCell>
-                                <CustomTableCell style={{ width: '10%' }} align="right"><IconButton aria-label="Delete">
+                                <CustomTableCell style={{ width: '10%' }} align="right"><IconButton aria-label="Delete" color="primary">
                                     <DeleteIcon />
                                 </IconButton></CustomTableCell>
                                 {/* <CustomTableCell align="right">{row.fat}</CustomTableCell>

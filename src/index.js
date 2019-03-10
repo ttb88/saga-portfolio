@@ -46,6 +46,7 @@ function* postProject(action) {
     try {
         yield axios.post('/project', action.payload);
         yield put({ type: 'FETCH_PROJECTS'});
+        yield put({ type: 'CONFIRM_POST'});
     }
     catch (err) {
         console.log(`couldn't add project`, err);
@@ -69,8 +70,6 @@ const sagaMiddleware = createSagaMiddleware();
 
 // Used to store projects returned from the server
 const projects = (state = [], action) => {
-    
-    
     switch (action.type) {
         case 'SET_PROJECTS':
             console.log(action.payload);
@@ -90,11 +89,24 @@ const tags = (state = [], action) => {
     }
 }
 
+
+const confirmPost = (state = false, action) => {
+    switch (action.type) {
+        case 'CONFIRM_POST':
+            return true;
+        case 'RESET_POST':
+            return false;
+        default:
+            return state;
+    }
+}
+
 // Create one store that all components can use
 const storeInstance = createStore(
     combineReducers({
         projects,
         tags,
+        confirmPost,
     }),
     // Add sagaMiddleware to our store
     applyMiddleware(sagaMiddleware, logger),
