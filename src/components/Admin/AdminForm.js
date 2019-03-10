@@ -105,8 +105,8 @@ class AdminForm extends Component {
                     <Grid container spacing={8}>
                         <Grid item xs={12} sm={5}>
                             <TextValidator
-                                id="outlined"
-                                label="Name"
+                                id="name"
+                                label="* Name"
                                 fullWidth
                                 className={classNames(classes.textField)}
                                 onChange={this.handleChange('name')}
@@ -123,7 +123,7 @@ class AdminForm extends Component {
                             <MuiPickersUtilsProvider utils={DateFnsUtils}>
                                 <DatePicker
                                     margin="normal"
-                                    label="Date"
+                                    label="* Date"
                                     fullWidth
                                     value={this.state.selectedDate}
                                     onChange={this.handleDateChange}
@@ -136,10 +136,10 @@ class AdminForm extends Component {
                         </Grid>
                         <Grid item xs={6} sm={4}>
                             <TextValidator
-                                id="outlined-select-currency"
+                                id="tag"
                                 select
                                 fullWidth
-                                label="Select a tag"
+                                label="* Select a tag"
                                 className={classes.textField}
                                 value={this.state.selectedTag}
                                 onChange={this.handleChange('selectedTag')}
@@ -163,14 +163,15 @@ class AdminForm extends Component {
                         </Grid>
                         <Grid item xs={12} sm={6}>
                             <TextValidator
-                                id="outlined"
-                                label="GitHub URL"
+                                id="github"
+                                label="* GitHub URL"
                                 fullWidth
                                 className={classNames(classes.textField)}
                                 onChange={this.handleChange('gitHubUrl')}
                                 name="gitHubUrl"
                                 type="url"
                                 margin="normal"
+                                // helperText="*required"
                                 value={this.state.gitHubUrl}
                                 validators={['required']}
                                 errorMessages={['this field is required']}
@@ -179,8 +180,8 @@ class AdminForm extends Component {
                         </Grid>
                         <Grid item xs={12} sm={6}>
                             <TextValidator
-                                id="outlined"
-                                label="Website URL (optional)"
+                                id="website"
+                                label="Website URL"
                                 fullWidth
                                 className={classNames(classes.textField)}
                                 onChange={this.handleChange('websiteUrl')}
@@ -193,7 +194,7 @@ class AdminForm extends Component {
                         </Grid>
                         <Grid item xs={12} sm={12}>
                             <TextValidator
-                                id="filled-multiline-flexible"
+                                id="description"
                                 label="Description"
                                 multiline
                                 fullWidth
@@ -203,11 +204,13 @@ class AdminForm extends Component {
                                 onChange={this.handleChange('description')}
                                 className={classes.textField}
                                 margin="normal"
-                                // helperText="hello"
                                 variant="outlined"
                             />
                         </Grid>
-                        <Grid item xs={12} sm={12}>
+                        <Grid item xs={4} sm={2} >
+                            <h5 style={{margin: '0', fontWeight: 'lighter', fontStyle: 'italic' }}>* required</h5>
+                        </Grid>
+                        <Grid item xs={8} sm={10}>
                             <Button
                                 type="submit"
                                 variant="contained"
