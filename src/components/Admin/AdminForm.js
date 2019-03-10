@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
@@ -38,32 +39,25 @@ const styles = theme => ({
 
 class AdminForm extends Component {
 
+    
     state = {
         name: '',
         selectedDate: new Date(),
-        tags: [
-            {
-                value: 'React',
-                label: 'React',
-            },
-            {
-                value: 'Javascript',
-                label: 'Javascript',
-            },
-            {
-                value: 'Material-UI',
-                label: 'Material',
-            },
-            {
-                value: 'Redux',
-                label: 'Redux',
-            },
-        ],
         selectedTag: '',
         description: '',
         gitHubUrl: '',
         websiteUrl: '',
     }
+
+    componentDidMount = () => {
+        this.getTags();
+    }
+
+
+    getTags() {
+        this.props.dispatch({ type: 'FETCH_TAGS' });
+    }
+
 
     handleChange = (property) => (event) => {
         this.setState({
@@ -88,6 +82,8 @@ class AdminForm extends Component {
     // Renders the entire app on the DOM
     render() {
         const { classes } = this.props;
+
+        console.log('tags', this.props.tags);
 
         return (
             <div className={classes.root}>
@@ -150,9 +146,9 @@ class AdminForm extends Component {
                                     margin="normal"
                                     variant="outlined"
                                 >
-                                    {this.state.tags.map(option => (
-                                        <MenuItem key={option.value} value={option.value}>
-                                            {option.label}
+                                    {this.props.tags.map(option => (
+                                        <MenuItem key={option.id} value={option.name}>
+                                            {option.name}
                                         </MenuItem>
                                     ))}
                                 </TextValidator>
@@ -225,5 +221,9 @@ AdminForm.propTypes = {
     classes: PropTypes.object.isRequired,
 };
 
+const mapReduxStateToProps = (reduxState) => {
+    return reduxState;
+}
 
-export default withStyles(styles)(AdminForm);
+
+export default withStyles(styles)(connect(mapReduxStateToProps)(AdminForm));

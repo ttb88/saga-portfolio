@@ -36,7 +36,7 @@ function* fetchProjects() {
 function* fetchTags() {
     try {
         const projects = yield axios.get('/tag');
-        yield put({ type: 'SET_TAGS', paylod: projects.data });
+        yield put({ type: 'SET_TAGS', payload: projects.data });
     }
     catch (err) {
         console.log(`couldn't fetch tags`, err);
@@ -45,7 +45,7 @@ function* fetchTags() {
 
 function* postProject(action) {
     try {
-        yield axios.post('/project', action.paylod);
+        yield axios.post('/project', action.payload);
         yield put({ type: 'FETCH_PROJECTS'});
     }
     catch (err) {

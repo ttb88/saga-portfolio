@@ -12,7 +12,7 @@ app.use(express.static('build'));
 
 /** ---------- ROUTES ---------- **/
 app.use('/project', projectRouter);
-// app.use('/tag', tagRouter);
+app.use('/tag', tagRouter);
 
 
 /** ---------- START SERVER ---------- **/
