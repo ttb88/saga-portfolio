@@ -1,8 +1,9 @@
 
 
 .github-logo img {
-    margin-top: 20px;
-    width: 100px;
+    margin-top: 5px;
+    margin-bottom: 8gitpx;
+    width: 90px;
     opacity: 1;
 }
 
@@ -10,7 +11,7 @@
     background-image: linear-gradient(to top, rgba(0, 150, 136,.4), rgba(0, 150, 136,1));
     /* background-color: linear-gradient(rgba(199, 199, 199, 0.1), rgba(114, 114, 114, 0.9)); */
     /* opacity: .7; */
-    height: 225px;
+    height: 160px;
     border-bottom: 1px solid rgb(170, 170, 170);
     color: white;
 }

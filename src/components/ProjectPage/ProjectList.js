@@ -9,7 +9,7 @@ const styles = theme => ({
         flexGrow: 1,
         marginLeft: 5,
         marginRight: 5,
-        marginTop: 0,
+        marginTop: 10,
     },
     container: {
         maxWidth: 1000,
