@@ -24,7 +24,9 @@ function* rootSaga() {
 function* fetchProjects() {
     try{
         const projects = yield axios.get('/project');
-        yield put({type:'SET_PROJECTS', paylod:projects.data});
+        console.log(projects.data);
+        
+        yield put({type:'SET_PROJECTS', payload:projects.data});
     }
     catch (err) {
         console.log(`couldn't fetch projects`, err);
@@ -68,8 +70,11 @@ const sagaMiddleware = createSagaMiddleware();
 
 // Used to store projects returned from the server
 const projects = (state = [], action) => {
+    
+    
     switch (action.type) {
         case 'SET_PROJECTS':
+            console.log(action.payload);
             return action.payload;
         default:
             return state;
