@@ -36,7 +36,7 @@ const styles = theme => ({
 });
 
 
-class AdminFormTwo extends Component {
+class AdminForm extends Component {
 
     state = {
         name: '',
@@ -221,9 +221,9 @@ class AdminFormTwo extends Component {
     }
 }
 
-AdminFormTwo.propTypes = {
+AdminForm.propTypes = {
     classes: PropTypes.object.isRequired,
 };
 
 
-export default withStyles(styles)(AdminFormTwo);
+export default withStyles(styles)(AdminForm);

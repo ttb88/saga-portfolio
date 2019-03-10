@@ -9,7 +9,6 @@ router.get('/', (req, res) => {
         .then((result) => {
             projects = result.rows;
             console.log(projects);
-            
             res.send(projects);
         }).catch((error) => {
             console.log('errors with projects select', error);
