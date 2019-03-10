@@ -55,7 +55,7 @@ function* postProject(action) {
 
 function* deleteProject(action) {
     try {
-        yield axios.delete('/project/' + action.payload.id);
+        yield axios.delete('/project/' + action.payload);
         yield put({ type: 'FETCH_PROJECTS' });
     }
     catch (err) {
