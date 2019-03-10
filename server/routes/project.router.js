@@ -16,4 +16,16 @@ router.get('/', (req, res) => {
         })
 })
 
+// will receive new project item and insert into the applicable fields on "projects" table in database
+router.post('/', (req, res) => {
+    console.log('project POST route was hit', req.body);
+    pool.query(`INSERT INTO "projects" (name, date_completed, tag_id, github, website, description) VALUES ($1,$2, $3, $4, $5, $6);`, 
+        [req.body.name, req.body.selectedDate, req.body.selectedTag, req.body.gitHubUrl, req.body.websiteUrl, req.body.description]).then(() => {
+        res.sendStatus(201);
+    }).catch((error) => {
+        console.log('errors with feedback insert', error);
+        res.sendStatus(500);
+    })
+})
+
 module.exports = router;

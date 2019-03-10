@@ -33,19 +33,20 @@ class AdminForm extends Component {
         name: '',
         selectedDate: new Date(),
         selectedTag: '',
-        description: '',
         gitHubUrl: '',
         websiteUrl: '',
+        description: '',
     }
 
     componentDidMount = () => {
-        this.getTags();
-    }
-
-
-    getTags() {
         this.props.dispatch({ type: 'FETCH_TAGS' });
+        // this.getTags();
     }
+
+
+    // getTags() {
+    //     this.props.dispatch({ type: 'FETCH_TAGS' });
+    // }
 
 
     handleChange = (property) => (event) => {
@@ -56,7 +57,16 @@ class AdminForm extends Component {
     }
 
     handleSubmit = () => {
-        // your submit logic
+        this.props.dispatch({ type: 'POST_PROJECT', payload: this.state });
+        this.setState({
+            name: '',
+            selectedDate: new Date(),
+            selectedTag: '',
+            gitHubUrl: '',
+            websiteUrl: '',
+            description: '',
+        });
+        // window.location.reload('/')
     }
 
 
@@ -72,7 +82,7 @@ class AdminForm extends Component {
     render() {
         const { classes } = this.props;
 
-        console.log('tags', this.props.tags);
+        // console.log('tags', this.props.tags);
 
         return (
                     <ValidatorForm
@@ -133,7 +143,7 @@ class AdminForm extends Component {
                                     variant="outlined"
                                 >
                                     {this.props.tags.map(option => (
-                                        <MenuItem key={option.id} value={option.name}>
+                                        <MenuItem key={option.id} value={option.id}>
                                             {option.name}
                                         </MenuItem>
                                     ))}

@@ -25,7 +25,6 @@ function* fetchProjects() {
     try{
         const projects = yield axios.get('/project');
         console.log(projects.data);
-        
         yield put({type:'SET_PROJECTS', payload:projects.data});
     }
     catch (err) {

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import ProjectNavBar from '../ProjectPage/ProjectNavBar';
 import '../ProjectPage/ProjectPage.css';
 import ProjectList from '../ProjectPage/ProjectList';
@@ -18,6 +18,7 @@ const styles = {
         marginRight: 20,
     },
 };
+
 
 
 class ProjectPage extends Component {
@@ -41,9 +42,9 @@ class ProjectPage extends Component {
     }
 }
 
-ProjectPage.propTypes = {
-    classes: PropTypes.object.isRequired,
-};
+// ProjectPage.propTypes = {
+//     classes: PropTypes.object.isRequired,
+// };
 
 
 export default withStyles(styles)(ProjectPage);
