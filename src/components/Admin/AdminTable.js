@@ -88,7 +88,6 @@ class AdminTable extends Component {
 
     handleDeleteConfirm = confirmation => () => {
         if (confirmation === 'agree') {
-            console.log('clicked agree');
             this.props.dispatch({ type: 'DELETE_PROJECT', payload: this.state.selectedId });
         }
         this.setState({

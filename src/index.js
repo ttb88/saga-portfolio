@@ -46,9 +46,10 @@ function* postProject(action) {
     try {
         yield axios.post('/project', action.payload);
         yield put({ type: 'FETCH_PROJECTS'});
-        yield put({ type: 'CONFIRM_POST'});
+        yield put({ type: 'CONFIRM_POST', payload: true});
     }
     catch (err) {
+        yield put({ type: 'CONFIRM_POST', payload: false });
         console.log(`couldn't add project`, err);
     }
 }
@@ -93,9 +94,14 @@ const tags = (state = [], action) => {
 const confirmPost = (state = false, action) => {
     switch (action.type) {
         case 'CONFIRM_POST':
-            return true;
+            return {
+                open: true,
+                status: action.payload
+            };
         case 'RESET_POST':
-            return false;
+            return {
+                open: false,
+            };;
         default:
             return state;
     }

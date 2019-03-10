@@ -6,6 +6,7 @@ import Snackbar from '@material-ui/core/Snackbar';
 import DateFnsUtils from '@date-io/date-fns';
 import Button from '@material-ui/core/Button';
 import CheckCircleIcon from '@material-ui/icons/CheckCircle';
+import ErrorIcon from '@material-ui/icons/Error';
 import { MuiPickersUtilsProvider, DatePicker } from 'material-ui-pickers';
 import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -34,6 +35,8 @@ const styles = theme => ({
 
 
 class AdminForm extends Component {
+
+    
 
 
     state = {
@@ -86,6 +89,23 @@ class AdminForm extends Component {
     handleClose = () => {
         this.props.dispatch({ type: 'RESET_POST' })
     };
+
+    alertMessage = () => {
+        const { classes } = this.props;
+        // console.log('confirmPost', this.props.confirmPost);
+        
+        if (this.props.confirmPost.status) {
+            return <span id="message-id" style={{ display: 'flex', alignItems: 'center' }}>
+                <CheckCircleIcon className={classes.icon} />Project Successfully Added!</span>
+    }
+    else { return <span id="message-id" style={{ display: 'flex', alignItems: 'center' }}>
+            <ErrorIcon className={classes.icon} />Project add was unsuccessful</span>
+    }
+}
+
+    
+
+
 
 
 
@@ -227,13 +247,15 @@ class AdminForm extends Component {
                         vertical: 'bottom',
                         horizontal: 'left',
                     }}
-                    open={this.props.confirmPost}
+                    open={this.props.confirmPost.open}
                     autoHideDuration={6000}
                     onClose={this.handleClose}
                     ContentProps={{
                         'aria-describedby': 'message-id',
                     }}
-                    message={<span id="message-id" style={{ display: 'flex', alignItems: 'center'}}><CheckCircleIcon className={classes.icon} />Project Successfully Added!</span>}
+                    message={this.alertMessage()}
+                    // message={<span id="message-id" style={{ display: 'flex', alignItems: 'center'}}>
+                    // <CheckCircleIcon className={classes.icon} />Project Successfully Added!</span>}
                 />
             </>
         );
