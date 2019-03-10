@@ -1,68 +1,75 @@
 import React, { Component } from 'react';
-import 'date-fns';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
 import { withStyles } from '@material-ui/core/styles';
-import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
+import Grid from '@material-ui/core/Grid';
 import DateFnsUtils from '@date-io/date-fns';
+import Button from '@material-ui/core/Button';
 import { MuiPickersUtilsProvider, DatePicker } from 'material-ui-pickers';
+import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
 import MenuItem from '@material-ui/core/MenuItem';
+import classNames from 'classnames';
 
 const styles = theme => ({
     root: {
         flexGrow: 1,
-        marginTop: 0,
+        marginLeft: 5,
+        marginRight: 5,
+        marginTop: 40,
     },
     container: {
-        display: 'flex',
-        flexWrap: 'wrap',
-        maxWidth: 800,
-        minWidth: 400,
+        maxWidth: 700,
         marginLeft: 'auto',
         marginRight: 'auto',
     },
     textField: {
-        marginLeft: 4,
-        marginRight: 4,
+        marginTop: 2,
+        marginBottom: 2,
     },
     menu: {
         width: 200,
     },
+    button: {
+        margin: 0,
+        width: 120,
+        float: 'right',
+    },
 });
 
 
-class AdminForm extends Component {
-
-  
+class AdminFormTwo extends Component {
 
     state = {
         name: '',
-       currency: '',
         selectedDate: new Date(),
-        currencies: [
+        tags: [
             {
-                value: 'USD',
+                value: 'React',
                 label: 'React',
             },
             {
-                value: 'EUR',
+                value: 'Javascript',
                 label: 'Javascript',
             },
             {
-                value: 'BTC',
-                label: '฿',
+                value: 'Material-UI',
+                label: 'Material',
             },
             {
-                value: 'JPY',
-                label: '¥',
+                value: 'Redux',
+                label: 'Redux',
             },
         ],
+        selectedTag: '',
+        description: '',
+        gitHubUrl: '',
+        websiteUrl: '',
     }
 
     handleChange = (property) => (event) => {
-        this.setState({ 
+        this.setState({
             ...this.state,
-            [property]: event.target.value });
+            [property]: event.target.value
+        });
     }
 
     handleSubmit = () => {
@@ -71,112 +78,152 @@ class AdminForm extends Component {
 
 
     handleDateChange = date => {
-        this.setState({ 
-            selectedDate: date });
+        this.setState({
+            selectedDate: date
+        });
     };
-  
+
+
+
+    // Renders the entire app on the DOM
     render() {
         const { classes } = this.props;
 
         return (
-            <div className={classes.container}>
-               
-                
-                <ValidatorForm
-                    ref="form"
-                    onSubmit={this.handleSubmit}
-                    onError={errors => console.log(errors)} 
-                    >
-                    <TextValidator
-                        id="outlined"
-                        label="Name"
-                        className={classNames(classes.textField)}
-                        onChange={this.handleChange('name')}
-                        name="name"
-                        type="text"
-                        margin="normal"
-                        value={this.state.name}
-                        validators={['required']}
-                        errorMessages={['this field is required']}
-                        variant="outlined"
-                    />
-                   
-                    <MuiPickersUtilsProvider utils={DateFnsUtils}>
-                    <DatePicker
-                        margin="normal"
-                        label="Date"
-                        value={this.state.selectedDate}
-                        onChange={this.handleDateChange}
-                        // validators={['required']}
-                        // errorMessages={['this field is required']}
-                        className={classNames(classes.textField)}
-                        variant="outlined"
-                    />
-                    </MuiPickersUtilsProvider>
-                       
-                    <TextValidator
-                        id="outlined-select-currency"
-                        select
-                        label="Select a tag"
-                        className={classes.textField}
-                        value={this.state.currency}
-                        onChange={this.handleChange('currency')}
-                        SelectProps={{
-                            MenuProps: {
-                                className: classes.menu,
-                            },
-                        }}
-                        helperText="Please select your currency"
-                        validators={['required']}
-                        errorMessages={['this field is required']}
-                        margin="normal"
-                        variant="outlined"
-                    >
-                        {this.state.currencies.map(option => (
-                            <MenuItem key={option.value} value={option.value}>
-                                {option.label}
-                            </MenuItem>
-                        ))}
-                      </TextValidator>
+            <div className={classes.root}>
+                <div className={classes.container}>
 
-                    <TextValidator
-                        id="outlined"
-                        label="Name"
-                        className={classNames(classes.textField)}
-                        onChange={this.handleChange('name')}
-                        name="name"
-                        type="text"
-                        margin="normal"
-                        value={this.state.name}
-                        validators={['required']}
-                        errorMessages={['this field is required']}
-                        variant="outlined"
-                    />
-                    <TextValidator
-                        id="outlined"
-                        label="Name"
-                        className={classNames(classes.textField)}
-                        onChange={this.handleChange('name')}
-                        name="name"
-                        type="text"
-                        margin="normal"
-                        value={this.state.name}
-                        validators={['required']}
-                        errorMessages={['this field is required']}
-                        variant="outlined"
-                    />
-               
-
-                      </ValidatorForm>
+                    <ValidatorForm
+                        ref="form"
+                        onSubmit={this.handleSubmit}
+                        onError={errors => console.log(errors)}
+                    >
+                        <Grid container spacing={8}>
+                            <Grid item xs={12} sm={5}>
+                                <TextValidator
+                                    id="outlined"
+                                    label="Name"
+                                    fullWidth
+                                    className={classNames(classes.textField)}
+                                    onChange={this.handleChange('name')}
+                                    name="name"
+                                    type="text"
+                                    margin="normal"
+                                    value={this.state.name}
+                                    validators={['required']}
+                                    errorMessages={['this field is required']}
+                                    variant="outlined"
+                                />
+                            </Grid>
+                            <Grid item xs={6} sm={3}>
+                                <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                                    <DatePicker
+                                        margin="normal"
+                                        label="Date"
+                                        fullWidth
+                                        value={this.state.selectedDate}
+                                        onChange={this.handleDateChange}
+                                        // validators={['required']}
+                                        // errorMessages={['this field is required']}
+                                        className={classNames(classes.textField)}
+                                        variant="outlined"
+                                    />
+                                </MuiPickersUtilsProvider>
+                            </Grid>
+                            <Grid item xs={6} sm={4}>
+                                <TextValidator
+                                    id="outlined-select-currency"
+                                    select
+                                    fullWidth
+                                    label="Select a tag"
+                                    className={classes.textField}
+                                    value={this.state.selectedTag}
+                                    onChange={this.handleChange('selectedTag')}
+                                    SelectProps={{
+                                        MenuProps: {
+                                            className: classes.menu,
+                                        },
+                                    }}
+                                    // helperText="Please select your currency"
+                                    validators={['required']}
+                                    errorMessages={['this field is required']}
+                                    margin="normal"
+                                    variant="outlined"
+                                >
+                                    {this.state.tags.map(option => (
+                                        <MenuItem key={option.value} value={option.value}>
+                                            {option.label}
+                                        </MenuItem>
+                                    ))}
+                                </TextValidator>
+                            </Grid>
+                            <Grid item xs={12} sm={6}>
+                                <TextValidator
+                                    id="outlined"
+                                    label="GitHub URL"
+                                    fullWidth
+                                    className={classNames(classes.textField)}
+                                    onChange={this.handleChange('gitHubUrl')}
+                                    name="gitHubUrl"
+                                    type="url"
+                                    margin="normal"
+                                    value={this.state.gitHubUrl}
+                                    validators={['required']}
+                                    errorMessages={['this field is required']}
+                                    variant="outlined"
+                                />
+                            </Grid>
+                            <Grid item xs={12} sm={6}>
+                                <TextValidator
+                                    id="outlined"
+                                    label="Website URL (optional)"
+                                    fullWidth
+                                    className={classNames(classes.textField)}
+                                    onChange={this.handleChange('websiteUrl')}
+                                    name="websiteUrl"
+                                    type="url"
+                                    margin="normal"
+                                    value={this.state.websiteUrl}
+                                    variant="outlined"
+                                />
+                            </Grid>
+                            <Grid item xs={12} sm={12}>
+                                <TextValidator
+                                    id="filled-multiline-flexible"
+                                    label="Description"
+                                    multiline
+                                    fullWidth
+                                    rowsMax="4"
+                                    type="text"
+                                    value={this.state.description}
+                                    onChange={this.handleChange('description')}
+                                    className={classes.textField}
+                                    margin="normal"
+                                    // helperText="hello"
+                                    variant="outlined"
+                                />
+                            </Grid>
+                            <Grid item xs={12} sm={12}>
+                                <Button
+                                    type="submit"
+                                    variant="contained"
+                                    color="primary"
+                                    size="large"
+                                    className={classes.button}>
+                                    Submit
+                                 </Button>
+                            </Grid>
+                        </Grid>
+                    </ValidatorForm>
+                </div>
             </div>
         );
     }
 }
 
-AdminForm.propTypes = {
+AdminFormTwo.propTypes = {
     classes: PropTypes.object.isRequired,
 };
 
 
-
-export default withStyles(styles)(AdminForm);
+export default withStyles(styles)(AdminFormTwo);

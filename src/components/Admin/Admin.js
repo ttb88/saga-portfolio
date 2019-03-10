@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import ProjectNavBar from '../ProjectPage/ProjectNavBar';
-import AdminForm from '../Admin/AdminForm';
-import AdminFormTwo from '../Admin/AdminFormTwo';
-
+import AdminForm from './AdminForm';
 
 
 class Admin extends Component {
@@ -12,8 +10,7 @@ class Admin extends Component {
         return (
             <div>
                 <ProjectNavBar />
-                {/* <AdminForm /> */}
-                <AdminFormTwo />
+                <AdminForm />
             </div>
         );
     }
