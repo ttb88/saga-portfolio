@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import DateFnsUtils from '@date-io/date-fns';
@@ -10,18 +9,8 @@ import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
 import MenuItem from '@material-ui/core/MenuItem';
 import classNames from 'classnames';
 
+
 const styles = theme => ({
-    root: {
-        flexGrow: 1,
-        marginLeft: 5,
-        marginRight: 5,
-        marginTop: 40,
-    },
-    container: {
-        maxWidth: 700,
-        marginLeft: 'auto',
-        marginRight: 'auto',
-    },
     textField: {
         marginTop: 2,
         marginBottom: 2,
@@ -86,9 +75,6 @@ class AdminForm extends Component {
         console.log('tags', this.props.tags);
 
         return (
-            <div className={classes.root}>
-                <div className={classes.container}>
-
                     <ValidatorForm
                         ref="form"
                         onSubmit={this.handleSubmit}
@@ -211,15 +197,10 @@ class AdminForm extends Component {
                             </Grid>
                         </Grid>
                     </ValidatorForm>
-                </div>
-            </div>
         );
     }
 }
 
-AdminForm.propTypes = {
-    classes: PropTypes.object.isRequired,
-};
 
 const mapReduxStateToProps = (reduxState) => {
     return reduxState;
