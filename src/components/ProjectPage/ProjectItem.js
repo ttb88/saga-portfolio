@@ -74,7 +74,7 @@ class ProjectItem extends Component {
 
     // toggles state of heart button icon when clicked and determines which version of icon is displayed on DOM     
     toggleHeart = () => {
-        if (!this.state.toggle) {
+        if (!this.state.heartToggle) {
             this.setState({
                 heartToggle: true,
             })
@@ -87,7 +87,7 @@ class ProjectItem extends Component {
 
     // outputs version of heart icon to DOM based on current state of 'heartToggle'
     displayHeart = () => {
-        if (this.state.toggle) {
+        if (this.state.heartToggle) {
             return <FavoriteIcon style={{ color: '#c95f76' }} />
         }
         else {
