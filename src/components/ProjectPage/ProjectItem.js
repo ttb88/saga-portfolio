@@ -104,8 +104,7 @@ class ProjectItem extends Component {
                 <Card className={classes.card}>
                     <CardHeader
                         avatar={
-                            <Avatar style={{ marginRight: '-49px' }} aria-label="initials" className={classes.avatar}>
-                                GH
+                            <Avatar style={{ marginRight: '-49px' }} aria-label="initials" className={classes.avatar} src="/images/44652804.jpeg">
                                 </Avatar>
                         }
                         // for potential future use
