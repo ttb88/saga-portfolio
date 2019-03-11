@@ -5,7 +5,9 @@ const pool = require('../modules/pool');
 
 // will return all items from "projects" table on database ordered ascending by "date"
 router.get('/', (req, res) => {
-    pool.query(`SELECT * FROM "projects" ORDER BY "date_completed" ASC;`)
+    pool.query(`SELECT "projects"."id","projects"."name", "description", "thumbnail", "website", "github", "date_completed", "tag_id", "tags"."name" as "tag_name" FROM "projects"
+    JOIN "tags" ON "tags"."id"="tag_id"
+    ORDER BY "date_completed" ASC;`)
         .then((result) => {
             projects = result.rows;
             console.log(projects);
@@ -19,13 +21,13 @@ router.get('/', (req, res) => {
 // will receive new project item and insert into the applicable fields on "projects" table in database
 router.post('/', (req, res) => {
     console.log('project POST route was hit', req.body);
-    pool.query(`INSERT INTO "projects" (name, date_completed, tag_id, github, website, description) VALUES ($1,$2, $3, $4, $5, $6);`, 
+    pool.query(`INSERT INTO "projects" (name, date_completed, tag_id, github, website, description) VALUES ($1,$2, $3, $4, $5, $6);`,
         [req.body.name, req.body.selectedDate, req.body.selectedTag, req.body.gitHubUrl, req.body.websiteUrl, req.body.description]).then(() => {
-        res.sendStatus(201);
-    }).catch((error) => {
-        console.log('errors with feedback insert', error);
-        res.sendStatus(500);
-    })
+            res.sendStatus(201);
+        }).catch((error) => {
+            console.log('errors with feedback insert', error);
+            res.sendStatus(500);
+        })
 })
 
 // delete selected row on DOM from database

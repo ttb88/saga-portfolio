@@ -12,16 +12,16 @@ import Collapse from '@material-ui/core/Collapse';
 import Avatar from '@material-ui/core/Avatar';
 import IconButton from '@material-ui/core/IconButton';
 import FavoriteIcon from '@material-ui/icons/Favorite';
-import ShareIcon from '@material-ui/icons/Share';
+import Chip from '@material-ui/core/Chip';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
 import Grid from '@material-ui/core/Grid';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
+import './ProjectItem.css';
 
 
 const styles = theme => ({
     card: {
-        // maxWidth: 350,
-        minHeight: 375,
+        height: 375,
         backgroundColor: 'rgba(51, 171, 159, 0.323)'
     },
     media: {
@@ -56,83 +56,88 @@ class ProjectItem extends Component {
         this.setState(state => ({ expanded: !state.expanded }));
     };
 
+    formatDate = () => {
+        const date = this.props.project.date_completed;
+        return new Date(date).getMonth() + 1 + '/' + 
+        new Date(date).getDate() + '/' + 
+        new Date(date).getFullYear()
+    }
+
+
     render() {
         const { classes } = this.props;
 
         return (
-                <Grid item xs={12} sm={4}>
-                        <Card className={classes.card}>
-                            <CardHeader
-                                avatar={
-                                    <Avatar aria-label="Recipe" className={classes.avatar}>
-                                        GH
+            <Grid item xs={12} sm={4}>
+                <Card className={classes.card}>
+                    <CardHeader
+                        avatar={
+                            <Avatar aria-label="Recipe" className={classes.avatar}>
+                                GH
                                 </Avatar>
-                                }
-                                action={
-                                    <IconButton>
-                                        <MoreVertIcon />
-                                    </IconButton>
-                                }
-                                title={this.props.project.name}
-                                subheader={this.props.project.date_completed = new Date().getMonth() + 1 + '/' + new Date().getDate() + '/' + new Date().getFullYear()}
-                            />
-                            <CardMedia
-                                className={classes.media}
-                                image={this.props.project.thumbnail}
-                                title={this.props.project.name}
-                            />
-                            <CardContent>
-                                <Typography component="p">
-                                    {this.props.project.description}
-                                </Typography>
-                            </CardContent>
-                            <CardActions className={classes.actions} disableActionSpacing>
-                                <IconButton aria-label="Add to favorites">
-                                    <FavoriteIcon />
-                                </IconButton>
-                                <IconButton aria-label="Share">
-                                    <ShareIcon />
-                                </IconButton>
-                                <IconButton
-                                    className={classnames(classes.expand, {
-                                        [classes.expandOpen]: this.state.expanded,
-                                    })}
-                                    onClick={this.handleExpandClick}
-                                    aria-expanded={this.state.expanded}
-                                    aria-label="Show more"
-                                >
-                                    <ExpandMoreIcon />
-                                </IconButton>
-                            </CardActions>
-                            <Collapse in={this.state.expanded} timeout="auto" unmountOnExit>
-                                <CardContent>
-                                    <Typography paragraph>Method:</Typography>
-                                    <Typography paragraph>
-                                        Heat 1/2 cup of the broth in a pot until simmering, add saffron and set aside for 10
-                                        minutes.
+                        }
+                        action={
+                            <IconButton>
+                                <MoreVertIcon />
+                            </IconButton>
+                        }
+                        title={this.props.project.name}
+                        subheader={this.formatDate()}
+                    />
+                    <CardMedia
+                        style={{ height: '10px' }}
+                        className={classes.media}
+                        image={this.props.project.thumbnail}
+                        title={this.props.project.name}
+                    />
+                    <CardContent style={{ height: '10px' }}>
+                        <Typography component="p">
+                            {this.props.project.description}
+                        </Typography>
+                    </CardContent>
+                    <CardActions className={classes.actions} disableActionSpacing>
+                        <IconButton aria-label="Add to favorites">
+                            <FavoriteIcon />
+                        </IconButton>
+                        <IconButton aria-label="github" >
+                            <a href={!this.props.project.github ? "https://github.com" : this.props.project.github} 
+                                target="_blank">
+                            <i class="fab fa-github fa-lg"></i>
+                            </a>
+                        </IconButton>
+                        <Typography style={{marginRight: '8px', marginLeft: '4px'}}>tags: </Typography>
+                        <Chip label={this.props.project.tag_name} className={classes.chip} variant="outlined" />
+                        <IconButton
+                            className={classnames(classes.expand, {
+                                [classes.expandOpen]: this.state.expanded,
+                            })}
+                            onClick={this.handleExpandClick}
+                            aria-expanded={this.state.expanded}
+                            aria-label="Show more"
+                        >
+                            <ExpandMoreIcon />
+                        </IconButton>
+                       
+                    </CardActions>
+                    <Collapse in={this.state.expanded} timeout="auto" unmountOnExit>
+                        <CardContent>
+                            <Typography paragraph>Method:</Typography>
+                            <Typography paragraph>
+                                Heat 1/2 cup of the broth in a pot until simmering, add saffron and set aside for 10
+                                minutes.
                                     </Typography>
-                                    <Typography paragraph>
-                                        Heat oil in a (14- to 16-inch) paella pan or a large, deep skillet over medium-high
-                                        heat. Add chicken, shrimp and chorizo, and cook, stirring occasionally until lightly
-                                        browned, 6 to 8 minutes. Transfer shrimp to a large plate and set aside, leaving
-                                        chicken and chorizo in the pan. Add pimentón, bay leaves, garlic, tomatoes, onion,
-                                        salt and pepper, and cook, stirring often until thickened and fragrant, about 10
-                                        minutes. Add saffron broth and remaining 4 1/2 cups chicken broth; bring to a boil.
+                            <Typography paragraph>
+                                Heat oil in a (14- to 16-inch) paella pan or a large, deep skillet over medium-high
+                                heat. Add chicken, shrimp and chorizo, and cook, stirring occasionally until lightly
+                                browned, 6 to 8 minutes. Transfer shrimp to a large plate and set aside, leaving
+                                chicken and chorizo in the pan. Add pimentón, bay leaves, garlic, tomatoes, onion,
+                                salt and pepper, and cook, stirring often until thickened and fragrant, about 10
+                                minutes. Add saffron broth and remaining 4 1/2 cups chicken broth; bring to a boil.
                                     </Typography>
-                                    <Typography paragraph>
-                                        Add rice and stir very gently to distribute. Top with artichokes and peppers, and cook
-                                        without stirring, until most of the liquid is absorbed, 15 to 18 minutes. Reduce heat
-                                        to medium-low, add reserved shrimp and mussels, tucking them down into the rice, and
-                                        cook again without stirring, until mussels have opened and rice is just tender, 5 to 7
-                                        minutes more. (Discard any mussels that don’t open.)
-                                    </Typography>
-                                    <Typography>
-                                        Set aside off of the heat to let rest for 10 minutes, and then serve.
-                                    </Typography>
-                                </CardContent>
-                            </Collapse>
-                        </Card>
-                    </Grid>
+                        </CardContent>
+                    </Collapse>
+                </Card>
+            </Grid>
         );
     }
 }
