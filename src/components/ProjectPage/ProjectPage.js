@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
-// import PropTypes from 'prop-types';
-import ProjectNavBar from '../ProjectPage/ProjectNavBar';
+import NavBar from '../NavBar/NavBar';
 import '../ProjectPage/ProjectPage.css';
-import ProjectList from '../ProjectPage/ProjectList';
+import ProjectList from './ProjectList';
 
 const styles = {
     root: {
@@ -17,8 +16,10 @@ const styles = {
         marginLeft: -12,
         marginRight: 20,
     },
+    typography: {
+        useNextVariants: true,
+    },
 };
-
 
 
 class ProjectPage extends Component {
@@ -28,7 +29,7 @@ class ProjectPage extends Component {
         return (
             <>
                 <div>
-                    <ProjectNavBar />
+                    <NavBar />
                 </div>
                 <div className="hero-content">
                     <div className="github-logo"><img src="/images/GitHub-Mark-Light-120px-plus.png" alt="github logo" />
@@ -41,10 +42,6 @@ class ProjectPage extends Component {
         );
     }
 }
-
-// ProjectPage.propTypes = {
-//     classes: PropTypes.object.isRequired,
-// };
 
 
 export default withStyles(styles)(ProjectPage);

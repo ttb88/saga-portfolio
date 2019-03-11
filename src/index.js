@@ -21,17 +21,19 @@ function* rootSaga() {
     yield takeEvery('DELETE_PROJECT', deleteProject);
 }
 
+// send axios GET request to server and fetch all items from 'projects' table on database
 function* fetchProjects() {
-    try{
+    try {
         const projects = yield axios.get('/project');
         console.log(projects.data);
-        yield put({type:'SET_PROJECTS', payload:projects.data});
+        yield put({ type: 'SET_PROJECTS', payload: projects.data });
     }
     catch (err) {
         console.log(`couldn't fetch projects`, err);
     }
 }
 
+// send axios GET request to server and fetch all items from 'tags' table on database
 function* fetchTags() {
     try {
         const projects = yield axios.get('/tag');
@@ -42,11 +44,14 @@ function* fetchTags() {
     }
 }
 
+// send axios POST request to server with payload from 'AdminForm' submit and re-fetch all items from 'projects' table
+// depending on whether item was successfully added to database a 'true' or 'false' payload will be sent to the 'confirmPost' reducer 
+// to deteremine which message will be shown on admin snackbar
 function* postProject(action) {
     try {
         yield axios.post('/project', action.payload);
-        yield put({ type: 'FETCH_PROJECTS'});
-        yield put({ type: 'CONFIRM_POST', payload: true});
+        yield put({ type: 'FETCH_PROJECTS' });
+        yield put({ type: 'CONFIRM_POST', payload: true });
     }
     catch (err) {
         yield put({ type: 'CONFIRM_POST', payload: false });
@@ -54,6 +59,7 @@ function* postProject(action) {
     }
 }
 
+// send axios DELETE request to server and re-fetch all items from 'projects' table on database
 function* deleteProject(action) {
     try {
         yield axios.delete('/project/' + action.payload);
@@ -90,7 +96,7 @@ const tags = (state = [], action) => {
     }
 }
 
-
+// Used to store confirmation boolean on POST to server/database
 const confirmPost = (state = false, action) => {
     switch (action.type) {
         case 'CONFIRM_POST':
@@ -121,6 +127,6 @@ const storeInstance = createStore(
 // Pass rootSaga into our sagaMiddleware
 sagaMiddleware.run(rootSaga);
 
-ReactDOM.render(<Provider store={storeInstance}><App /></Provider>, 
+ReactDOM.render(<Provider store={storeInstance}><App /></Provider>,
     document.getElementById('root'));
 registerServiceWorker();

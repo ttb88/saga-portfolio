@@ -54,14 +54,15 @@ class AdminTable extends Component {
     }
 
 
+    // handles delete icon button and prompts confirmation dialog window to open up
     handleDeleteClick = id => () => {
-        console.log('delete click for id', id);
         this.setState({
             open: true,
             selectedId: id,
         });
     }
 
+    // displays the delete confirmation dialog window once a project has been successfully added to database
     deleteDialog = () => {
         return <Dialog
             open={this.state.open}
@@ -86,6 +87,7 @@ class AdminTable extends Component {
         </Dialog>
     }
 
+    // handles 'agree'/'disagree' buttons from dialog window and sends delete dispatch to redux
     handleDeleteConfirm = confirmation => () => {
         if (confirmation === 'agree') {
             this.props.dispatch({ type: 'DELETE_PROJECT', payload: this.state.selectedId });
@@ -109,9 +111,6 @@ class AdminTable extends Component {
                             <TableRow>
                                 <CustomTableCell>Project Name</CustomTableCell>
                                 <CustomTableCell align="right"></CustomTableCell>
-                                {/* <CustomTableCell align="right">Fat (g)</CustomTableCell>
-                            <CustomTableCell align="right">Carbs (g)</CustomTableCell>
-                            <CustomTableCell align="right">Protein (g)</CustomTableCell> */}
                             </TableRow>
                         </TableHead>
                         <TableBody>
@@ -124,9 +123,6 @@ class AdminTable extends Component {
                                         <IconButton className={classes.iconHover} onClick={this.handleDeleteClick(row.id)} aria-label="Delete">
                                             <DeleteIcon />
                                         </IconButton></CustomTableCell>
-                                    {/* <CustomTableCell align="right">{row.fat}</CustomTableCell>
-                                <CustomTableCell align="right">{row.carbs}</CustomTableCell>
-                                <CustomTableCell align="right">{row.protein}</CustomTableCell> */}
                                 </TableRow>
                             ))}
                         </TableBody>

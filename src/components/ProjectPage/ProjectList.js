@@ -20,19 +20,14 @@ const styles = theme => ({
 
 class ProjectList extends Component {
 
+    // send fetch dispatch to redux which will return all items from 'projects' table on database
     componentDidMount = () => {
         this.props.dispatch({ type: 'FETCH_PROJECTS' });
     }
 
-    // getProjects() {
-        
-    // }
-
 
     render() {
         const { classes } = this.props;
-        console.log(this.props.projects)
-
 
         return (
             <div className={classes.root}>
@@ -40,7 +35,7 @@ class ProjectList extends Component {
                     <Grid container spacing={8}
                         direction="row"
                         justify="flex-start">
-                    {this.props.projects.map(project => <ProjectItem project={project} />)}
+                        {this.props.projects.map(project => <ProjectItem key={project.id} project={project} />)}
                     </Grid>
                 </div>
             </div>

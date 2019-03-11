@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { withStyles } from '@material-ui/core/styles';
-import ProjectNavBar from '../ProjectPage/ProjectNavBar';
+import NavBar from '../NavBar/NavBar';
 import AdminForm from './AdminForm';
 import AdminTable from './AdminTable';
 
@@ -21,7 +21,6 @@ const styles = theme => ({
 
 
 class Admin extends Component {
-    // Renders the entire app on the DOM
 
 
     render() {
@@ -30,7 +29,7 @@ class Admin extends Component {
 
         return (
             <div>
-                <ProjectNavBar />
+                <NavBar />
                 <div className={classes.root}>
                     <div className={classes.container}>
                         <AdminForm />

@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import '../ProjectPage/ProjectNavBar.css';
-import PropTypes from 'prop-types';
+import '../NavBar/NavBar.css';
 import { withStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -27,14 +26,15 @@ const styles = {
     link: {
         textDecoration: 'none',
         color: 'inherit',
-    }
+    },
+    typography: {
+        useNextVariants: true,
+    },
 };
 
 
 
-
-
-class ProjectNavBar extends Component {
+class NavBar extends Component {
 
     state = {
         anchorEl: null,
@@ -47,9 +47,9 @@ class ProjectNavBar extends Component {
     handleClose = () => {
         this.setState({ anchorEl: null });
     };
-    
-    
-    
+
+
+
     render() {
         const { classes } = this.props;
         return (
@@ -69,7 +69,7 @@ class ProjectNavBar extends Component {
                             <MenuItem onClick={this.handleClose}><Link className={classes.link} to="/admin">Admin</Link></MenuItem>
                         </Menu>
                         <Typography variant="h6" color="inherit" className={classes.grow}>
-                           My Github Portfoilio
+                            My Github Portfoilio
                         </Typography>
                     </Toolbar>
                 </AppBar>
@@ -78,8 +78,4 @@ class ProjectNavBar extends Component {
     }
 }
 
-ProjectNavBar.propTypes = {
-    classes: PropTypes.object.isRequired,
-};
-
-export default withStyles(styles)(ProjectNavBar);
+export default withStyles(styles)(NavBar);

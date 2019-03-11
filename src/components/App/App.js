@@ -21,7 +21,6 @@ const theme = createMuiTheme({
     },
   },
   typography: {
-    // Use the system font instead of the default Roboto font.
     fontFamily: [
       '-apple-system',
       'Comfortaa',
@@ -31,23 +30,23 @@ const theme = createMuiTheme({
       'Arial',
       'sans-serif',
     ].join(','),
-    fontSize: '12',
+    fontSize: '13',
+    useNextVariants: true,
   },
 });
 
 class App extends Component {
-  // Renders the entire app on the DOM
   render() {
-    
+
     return (
       <Router>
-      <MuiThemeProvider theme={theme}>
-      <div>
-        <Route exact path="/" component={ProjectPage} />
-        <Route exact path="/admin" component={Admin} />
-      </div>
-      </MuiThemeProvider>
-    </Router>
+        <MuiThemeProvider theme={theme}>
+          <div>
+            <Route exact path="/" component={ProjectPage} />
+            <Route exact path="/admin" component={Admin} />
+          </div>
+        </MuiThemeProvider>
+      </Router>
     );
   }
 }
