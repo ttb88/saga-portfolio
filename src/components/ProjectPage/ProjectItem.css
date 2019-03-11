@@ -7,6 +7,14 @@ a:visited {
 }
 
 a:hover {
-  color: white
+  color: white;
 }
 
+.card-image {
+    filter: grayscale(100%);
+    transition: all .2s;
+}
+
+.card-image:hover {
+    filter: grayscale(0%);
+}

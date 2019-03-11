@@ -7,7 +7,7 @@ const pool = require('../modules/pool');
 router.get('/', (req, res) => {
     pool.query(`SELECT "projects"."id","projects"."name", "description", "thumbnail", "website", "github", "date_completed", "tag_id", "tags"."name" as "tag_name" FROM "projects"
     JOIN "tags" ON "tags"."id"="tag_id"
-    ORDER BY "date_completed" ASC;`)
+    ORDER BY "date_completed" DESC;`)
         .then((result) => {
             projects = result.rows;
             console.log(projects);

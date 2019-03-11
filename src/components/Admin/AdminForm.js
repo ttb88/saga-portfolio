@@ -11,6 +11,7 @@ import { MuiPickersUtilsProvider, DatePicker } from 'material-ui-pickers';
 import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
 import MenuItem from '@material-ui/core/MenuItem';
 import classNames from 'classnames';
+import { Typography } from '@material-ui/core';
 
 
 const styles = theme => ({
@@ -113,6 +114,7 @@ render() {
 
     return (
         <>
+        <Typography><h2>Add New Project</h2></Typography>
             <ValidatorForm
                 ref="form"
                 onSubmit={this.handleSubmit}

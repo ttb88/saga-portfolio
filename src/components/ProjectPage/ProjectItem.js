@@ -21,12 +21,13 @@ import './ProjectItem.css';
 
 const styles = theme => ({
     card: {
-        height: 375,
-        backgroundColor: 'rgba(51, 171, 159, 0.323)'
+        // height: 550,
+        backgroundColor: 'rgba(51, 171, 159, 0.323)',
     },
     media: {
         height: 0,
-        paddingTop: '56.25%', // 16:9
+        paddingTop: '67.25%', // 16:9,
+        // backgroundColor: 'rgba(51, 171, 159, 0.323)'
     },
     actions: {
         display: 'flex',
@@ -50,7 +51,11 @@ const styles = theme => ({
 
 
 class ProjectItem extends Component {
-    state = { expanded: false };
+
+    state = {
+        expanded: false,
+        toggle: false,
+    };
 
     handleExpandClick = () => {
         this.setState(state => ({ expanded: !state.expanded }));
@@ -58,9 +63,30 @@ class ProjectItem extends Component {
 
     formatDate = () => {
         const date = this.props.project.date_completed;
-        return new Date(date).getMonth() + 1 + '/' + 
-        new Date(date).getDate() + '/' + 
-        new Date(date).getFullYear()
+        return new Date(date).getMonth() + 1 + '/' +
+            new Date(date).getDate() + '/' +
+            new Date(date).getFullYear()
+    }
+
+    toggleHeart = () => {
+        if (!this.state.toggle) {
+            this.setState({
+                toggle: true,
+            })
+        } else {
+            this.setState({
+                toggle: false,
+            })
+        }
+    }
+
+    displayHeart = () => {
+        if (this.state.toggle) {
+            return <FavoriteIcon style={{ color: '#c95f76' }} />
+        }
+        else {
+            return <FavoriteIcon />
+        }
     }
 
 
@@ -72,7 +98,7 @@ class ProjectItem extends Component {
                 <Card className={classes.card}>
                     <CardHeader
                         avatar={
-                            <Avatar aria-label="Recipe" className={classes.avatar}>
+                            <Avatar aria-label="initials" className={classes.avatar}>
                                 GH
                                 </Avatar>
                         }
@@ -84,28 +110,30 @@ class ProjectItem extends Component {
                         title={this.props.project.name}
                         subheader={this.formatDate()}
                     />
-                    <CardMedia
-                        style={{ height: '10px' }}
-                        className={classes.media}
-                        image={this.props.project.thumbnail}
-                        title={this.props.project.name}
-                    />
-                    <CardContent style={{ height: '10px' }}>
+                    <div className="card-image">
+                        <CardMedia
+                            style={{ height: '60px' }}
+                            className={classes.media}
+                            image={this.props.project.thumbnail}
+                            title={this.props.project.name}
+                        />
+                    </div>
+                    <CardContent style={{ marginTop: '3px', marginBottom: '3px', height: '90px' }}>
                         <Typography component="p">
                             {this.props.project.description}
                         </Typography>
                     </CardContent>
                     <CardActions className={classes.actions} disableActionSpacing>
-                        <IconButton aria-label="Add to favorites">
-                            <FavoriteIcon />
+                        <IconButton aria-label="Add to favorites" onClick={this.toggleHeart}>
+                            {this.displayHeart()}
                         </IconButton>
                         <IconButton aria-label="github" >
-                            <a href={!this.props.project.github ? "https://github.com" : this.props.project.github} 
+                            <a href={!this.props.project.github ? "https://github.com" : this.props.project.github}
                                 target="_blank">
-                            <i class="fab fa-github fa-lg"></i>
+                                <i class="fab fa-github fa-lg"></i>
                             </a>
                         </IconButton>
-                        <Typography style={{marginRight: '8px', marginLeft: '4px'}}>tags: </Typography>
+                        <Typography style={{ marginRight: '8px', marginLeft: '4px' }}>tags: </Typography>
                         <Chip label={this.props.project.tag_name} className={classes.chip} variant="outlined" />
                         <IconButton
                             className={classnames(classes.expand, {
@@ -117,7 +145,7 @@ class ProjectItem extends Component {
                         >
                             <ExpandMoreIcon />
                         </IconButton>
-                       
+
                     </CardActions>
                     <Collapse in={this.state.expanded} timeout="auto" unmountOnExit>
                         <CardContent>
