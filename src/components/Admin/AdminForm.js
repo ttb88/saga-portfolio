@@ -64,6 +64,7 @@ class AdminForm extends Component {
 
     // handles form submit button, sends post dispatch to redux with payload of all selected form inputs + clears form 
     handleSubmit = () => {
+        this.state.selectedTag === '' && this.setState({selectedTag: null});
         this.props.dispatch({ type: 'POST_PROJECT', payload: this.state });
         this.setState({
             name: '',
@@ -134,7 +135,7 @@ class AdminForm extends Component {
                             <MuiPickersUtilsProvider utils={DateFnsUtils}>
                                 <DatePicker
                                     margin="normal"
-                                    label="* Date"
+                                    label="Date"
                                     fullWidth
                                     value={this.state.selectedDate}
                                     onChange={this.handleDateChange}
@@ -148,7 +149,7 @@ class AdminForm extends Component {
                                 id="tag"
                                 select
                                 fullWidth
-                                label="* Select a tag"
+                                label="Select a tag"
                                 className={classes.textField}
                                 value={this.state.selectedTag}
                                 onChange={this.handleChange('selectedTag')}
@@ -157,8 +158,8 @@ class AdminForm extends Component {
                                         className: classes.menu,
                                     },
                                 }}
-                                validators={['required']}
-                                errorMessages={['this field is required']}
+                                // validators={['required']}
+                                // errorMessages={['this field is required']}
                                 margin="normal"
                                 variant="outlined"
                             >

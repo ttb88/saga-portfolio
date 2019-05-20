@@ -96,6 +96,7 @@ class ProjectItem extends Component {
     }
 
 
+
     render() {
         const { classes } = this.props;
 
@@ -114,13 +115,13 @@ class ProjectItem extends Component {
                         //     </IconButton>
                         // }
                         title={this.props.project.name}
-                        subheader={this.formatDate()}
+                        subheader={!this.props.project.date_completed ? '' : this.formatDate()}
                     />
                     <div className="card-image">
                         <CardMedia
                             style={{ height: '60px' }}
                             className={classes.media}
-                            image={this.props.project.thumbnail}
+                            image={this.props.project.thumbnail ? this.props.project.thumbnail : "images/clement-h-544786-unsplash.jpg"}
                             title={this.props.project.name}
                         />
                     </div>
@@ -139,8 +140,14 @@ class ProjectItem extends Component {
                                 <i class="fab fa-github fa-lg"></i>
                             </a>
                         </IconButton>
-                        <Typography style={{ marginRight: '8px', marginLeft: '4px' }}>tags: </Typography>
-                        <Chip label={this.props.project.tag_name} className={classes.chip} variant="outlined" />
+                        {this.props.project.website && <IconButton aria-label="website" >
+                            <a href={this.props.project.website}
+                                target="_blank" rel="noopener noreferrer">
+                                <i class="fas fa-globe-americas fa-lg"></i>
+                            </a>
+                        </IconButton>}
+                        {this.props.project.tag_name && <><Typography style={{ marginRight: '8px', marginLeft: '4px' }}>tags: </Typography>
+                        <Chip label={this.props.project.tag_name} className={classes.chip} variant="outlined" /></>}
                         {/* 
                             // for potential future use
                             <IconButton
