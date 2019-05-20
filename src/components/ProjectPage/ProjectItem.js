@@ -125,11 +125,11 @@ class ProjectItem extends Component {
                             title={this.props.project.name}
                         />
                     </div>
-                    <CardContent style={{ marginTop: '3px', marginBottom: '3px', height: '90px' }}>
+                    {this.props.project.description && <CardContent style={{ marginTop: '3px', marginBottom: '3px', height: '90px' }}>
                         <Typography component="p">
                             {this.props.project.description}
                         </Typography>
-                    </CardContent>
+                    </CardContent>}
                     <CardActions className={classes.actions} disableActionSpacing>
                         <IconButton aria-label="Add to favorites" onClick={this.toggleHeart}>
                             {this.displayHeart()}
