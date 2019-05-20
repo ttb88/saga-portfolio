@@ -8,7 +8,6 @@ router.get('/', (req, res) => {
     let nullTag;
     pool.query(`SELECT * FROM "projects";`).then((result) => {
         nullTag = result.rows.filter(row => row.tag_id === null)
-        console.log('nullTag', nullTag);
     })
     pool.query(`SELECT "projects"."id","projects"."name", "description", "thumbnail", "website", "github", "date_completed", "tag_id", "tags"."name" as "tag_name" FROM "projects"
     JOIN "tags" ON "tags"."id"="tag_id"

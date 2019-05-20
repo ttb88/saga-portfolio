@@ -21,3 +21,22 @@
     text-align: center;
     height: 200vh;
 }
+
+@media screen and (max-width: 600px) {
+    .github-logo img {
+        margin-top: 5px;
+        margin-bottom: 5px;
+        width: 76px;
+        opacity: 1;
+    }
+
+    .github-logo span {
+        font-size: 18px;
+    }
+
+    .hero-content {
+        height: 400vh;
+}
+
+
+}
