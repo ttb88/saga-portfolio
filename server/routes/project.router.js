@@ -15,7 +15,6 @@ router.get('/', (req, res) => {
     ORDER BY "date_completed" DESC;`)
         .then((result) => {
             projects = result.rows;
-            console.log('fetched projects', [...projects, ...nullTag]);
             res.send([...projects, ...nullTag]);
         }).catch((error) => {
             console.log('errors with projects select', error);

@@ -35,7 +35,8 @@ class ProjectList extends Component {
                     <Grid container spacing={8}
                         direction="row"
                         justify="flex-start">
-                        {this.props.projects.map(project => <ProjectItem key={project.id} project={project} />)}
+                        {this.props.projects.sort(function (a, b) {return new Date(b.date_completed) - new Date(a.date_completed);})
+                        .map(project => <ProjectItem key={project.id} project={project} />)}
                     </Grid>
                 </div>
             </div>
