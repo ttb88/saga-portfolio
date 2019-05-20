@@ -12,7 +12,7 @@ const styles = theme => ({
         marginTop: 10,
     },
     container: {
-        maxWidth: 1000,
+        maxWidth: 1200,
         marginLeft: 'auto',
         marginRight: 'auto',
     },

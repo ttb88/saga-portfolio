@@ -125,7 +125,7 @@ class ProjectItem extends Component {
                             title={this.props.project.name}
                         />
                     </div>
-                    {this.props.project.description && <CardContent style={{ marginTop: '3px', marginBottom: '3px', height: '90px' }}>
+                    {this.props.project.description && <CardContent style={{ marginTop: '3px', marginBottom: '3px', minHeight: '90px' }}>
                         <Typography component="p">
                             {this.props.project.description}
                         </Typography>
@@ -146,7 +146,7 @@ class ProjectItem extends Component {
                                 <i class="fas fa-globe-americas fa-lg"></i>
                             </a>
                         </IconButton>}
-                        {this.props.project.tag_name && <><Typography style={{ marginRight: '8px', marginLeft: '4px' }}>tags: </Typography>
+                        {this.props.project.tag_name && <><Typography style={{ marginRight: '8px', marginLeft: '4px' }}>tag: </Typography>
                         <Chip label={this.props.project.tag_name} className={classes.chip} variant="outlined" /></>}
                         {/* 
                             // for potential future use
