@@ -9,7 +9,7 @@ router.get('/', (req, res) => {
     pool.query(`SELECT * FROM "projects";`).then((result) => {
         nullTag = result.rows.filter(row => row.tag_id === null)
     })
-    pool.query(`SELECT "projects"."id","projects"."name", "description", "thumbnail", "website", "github", "date_completed", "tag_id", "tags"."name" as "tag_name" FROM "projects"
+    pool.query(`SELECT "projects"."id","projects"."name", "description", "thumbnail", "website", "github", "date_completed", "technologies", "tag_id", "tags"."name" as "tag_name" FROM "projects"
     JOIN "tags" ON "tags"."id"="tag_id"
     ORDER BY "date_completed" DESC;`)
         .then((result) => {

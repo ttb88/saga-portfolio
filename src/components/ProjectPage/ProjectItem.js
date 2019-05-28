@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
+import clsx from 'clsx';
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
 import CardMedia from '@material-ui/core/CardMedia';
@@ -12,11 +13,12 @@ import FavoriteIcon from '@material-ui/icons/Favorite';
 import Chip from '@material-ui/core/Chip';
 import Grid from '@material-ui/core/Grid';
 import './ProjectItem.css';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import Collapse from '@material-ui/core/Collapse';
 
 // potential future use
 // import MoreVertIcon from '@material-ui/icons/MoreVert';
-// import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-// import Collapse from '@material-ui/core/Collapse';
+
 
 
 const styles = theme => ({
@@ -33,17 +35,16 @@ const styles = theme => ({
     typography: {
         useNextVariants: true,
     },
-    // for potential future usage
-    // expand: {
-    //     transform: 'rotate(0deg)',
-    //     marginLeft: 'auto',
-    //     transition: theme.transitions.create('transform', {
-    //         duration: theme.transitions.duration.shortest,
-    //     }),
-    // },
-    // expandOpen: {
-    //     transform: 'rotate(0deg)',
-    // },
+    expand: {
+        transform: 'rotate(0deg)',
+        marginLeft: 'auto',
+        transition: theme.transitions.create('transform', {
+            duration: theme.transitions.duration.shortest,
+        }),
+    },
+    expandOpen: {
+        transform: 'rotate(0deg)',
+    },
     avatar: {
         backgroundColor: '#33ab9f',
     },
@@ -60,9 +61,9 @@ class ProjectItem extends Component {
     };
 
     // for potential future use    
-    // handleExpandClick = () => {
-    //     this.setState(state => ({ expanded: !state.expanded }));
-    // };
+    handleExpandClick = () => {
+        this.setState(state => ({ expanded: !state.expanded }));
+    };
 
     // formats date on card
     formatDate = () => {
@@ -152,10 +153,8 @@ class ProjectItem extends Component {
                         </IconButton>}
                         {this.props.project.tag_name && <><Typography style={{ marginRight: '8px', marginLeft: '4px' }}>tag: </Typography>
                             <Chip label={this.props.project.tag_name} className={classes.chip} variant="outlined" /></>}
-                        {/* 
-                            // for potential future use
-                            <IconButton
-                            className={classnames(classes.expand, {
+                        {this.props.project.technologies && <IconButton
+                            className={clsx(classes.expand, {
                                 [classes.expandOpen]: this.state.expanded,
                             })}
                             onClick={this.handleExpandClick}
@@ -163,22 +162,20 @@ class ProjectItem extends Component {
                             aria-label="Show more"
                         >
                             <ExpandMoreIcon />
-                        </IconButton> */}
+                        </IconButton>}
+                        
 
                     </CardActions>
-                    {/* 
-                        // for potential future use
-                        <Collapse in={this.state.expanded} timeout="auto" unmountOnExit>
+                    <Collapse in={this.state.expanded} timeout="auto" unmountOnExit>
                         <CardContent>
-                            <Typography paragraph>TBD</Typography>
+                            <Typography paragraph style={{ fontWeight: 'bold', marginBottom: '7px' }}>
+                                <i class="fas fa-code" style={{ marginRight: '5px' }}></i>
+                                TECHNOLOGIES</Typography>
                             <Typography paragraph>
-            
-                                    </Typography>
-                            <Typography paragraph>
-                
-                                    </Typography>
+                                {this.props.project.technologies}
+                            </Typography>
                         </CardContent>
-                    </Collapse> */}
+                    </Collapse>
                 </Card>
             </Grid>
         );

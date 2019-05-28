@@ -95,10 +95,10 @@ class AdminTable extends Component {
                 aria-labelledby="alert-dialog-title"
                 aria-describedby="alert-dialog-description"
             >
-                <DialogTitle id="alert-dialog-title">{"Please Confirm"}</DialogTitle>
+                <DialogTitle id="alert-dialog-title">{"Alert"}</DialogTitle>
                 <DialogContent>
                     <DialogContentText id="alert-dialog-description">
-                        This project cannot be deleted.  Create a new project if you'd like to test the delete functionality.
+                        This project cannot be deleted.  To test the delete functionality please add a new project.
             </DialogContentText>
                 </DialogContent>
                 <DialogActions>
