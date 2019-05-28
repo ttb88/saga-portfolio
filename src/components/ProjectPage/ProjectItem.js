@@ -106,7 +106,7 @@ class ProjectItem extends Component {
                     <CardHeader
                         avatar={
                             <Avatar style={{ marginRight: '-49px' }} aria-label="initials" className={classes.avatar} src="/images/44652804.jpeg">
-                                </Avatar>
+                            </Avatar>
                         }
                         // for potential future use
                         // action={
@@ -118,12 +118,16 @@ class ProjectItem extends Component {
                         subheader={!this.props.project.date_completed ? '' : this.formatDate()}
                     />
                     <div className="card-image">
-                        <CardMedia
-                            style={{ height: '60px' }}
-                            className={classes.media}
-                            image={this.props.project.thumbnail ? this.props.project.thumbnail : "images/clement-h-544786-unsplash.jpg"}
-                            title={this.props.project.name}
-                        />
+                        <a href={this.props.project.website}
+                            target="_blank" rel="noopener noreferrer">
+                            <CardMedia
+                                style={{ height: '60px' }}
+                                className={classes.media}
+                                image={this.props.project.thumbnail ? this.props.project.thumbnail :
+                                    "images/clement-h-544786-unsplash.jpg"}
+                                title={this.props.project.name}
+                            />
+                        </a>
                     </div>
                     {this.props.project.description && <CardContent style={{ marginTop: '3px', marginBottom: '3px', minHeight: '90px' }}>
                         <Typography component="p">
@@ -147,7 +151,7 @@ class ProjectItem extends Component {
                             </a>
                         </IconButton>}
                         {this.props.project.tag_name && <><Typography style={{ marginRight: '8px', marginLeft: '4px' }}>tag: </Typography>
-                        <Chip label={this.props.project.tag_name} className={classes.chip} variant="outlined" /></>}
+                            <Chip label={this.props.project.tag_name} className={classes.chip} variant="outlined" /></>}
                         {/* 
                             // for potential future use
                             <IconButton
