@@ -56,35 +56,60 @@ class AdminTable extends Component {
 
     // handles delete icon button and prompts confirmation dialog window to open up
     handleDeleteClick = id => () => {
+        console.log('id', id);
+        
         this.setState({
-            open: true,
             selectedId: id,
+            open: true,
         });
     }
 
-    // displays the delete confirmation dialog window once a project has been successfully added to database
+    // displays the delete confirmation dialog window for new projects and protects current 5 portfoilio projects
     deleteDialog = () => {
-        return <Dialog
-            open={this.state.open}
-            onClose={this.handleClose}
-            aria-labelledby="alert-dialog-title"
-            aria-describedby="alert-dialog-description"
-        >
-            <DialogTitle id="alert-dialog-title">{"Please Confirm"}</DialogTitle>
-            <DialogContent>
-                <DialogContentText id="alert-dialog-description">
-                    Are you sure you want to delete this project from the database?
+        if (this.state.selectedId > 5) {
+            return <Dialog
+                open={this.state.open}
+                onClose={this.handleClose}
+                aria-labelledby="alert-dialog-title"
+                aria-describedby="alert-dialog-description"
+            >
+                <DialogTitle id="alert-dialog-title">{"Please Confirm"}</DialogTitle>
+                <DialogContent>
+                    <DialogContentText id="alert-dialog-description">
+                        Are you sure you want to delete this project from the database?
             </DialogContentText>
-            </DialogContent>
-            <DialogActions>
-                <Button onClick={this.handleDeleteConfirm('disagree')} color="primary">
-                    Disagree
+                </DialogContent>
+                <DialogActions>
+                    <Button onClick={this.handleDeleteConfirm('disagree')} color="primary">
+                        Disagree
             </Button>
-                <Button onClick={this.handleDeleteConfirm('agree')} color="primary" autoFocus>
-                    Agree
+                    <Button onClick={this.handleDeleteConfirm('agree')} color="primary" autoFocus>
+                        Agree
             </Button>
-            </DialogActions>
-        </Dialog>
+                </DialogActions>
+            </Dialog> 
+        } else {
+            return <Dialog
+                open={this.state.open}
+                onClose={this.handleClose}
+                aria-labelledby="alert-dialog-title"
+                aria-describedby="alert-dialog-description"
+            >
+                <DialogTitle id="alert-dialog-title">{"Please Confirm"}</DialogTitle>
+                <DialogContent>
+                    <DialogContentText id="alert-dialog-description">
+                        This project cannot be deleted.  Create a new project if you'd like to test the delete functionality.
+            </DialogContentText>
+                </DialogContent>
+                <DialogActions>
+                    <Button onClick={this.handleDeleteConfirm('disagree')} color="primary">
+                        Close
+            </Button>
+                </DialogActions>
+            </Dialog> 
+
+        }
+        
     }
 
     // handles 'agree'/'disagree' buttons from dialog window and sends delete dispatch to redux
