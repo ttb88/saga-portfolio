@@ -102,7 +102,7 @@ class ProjectItem extends Component {
         const { classes } = this.props;
 
         return (
-            <Grid item xs={12} sm={4}>
+            <Grid item xs={12} sm={6} md={4}>
                 <Card className={classes.card}>
                     <CardHeader
                         avatar={
