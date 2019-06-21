@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { HashRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter, Route } from 'react-router-dom';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import './App.css';
 import ProjectPage from '../ProjectPage/ProjectPage';
@@ -39,14 +39,14 @@ class App extends Component {
   render() {
 
     return (
-      <Router>
+      <BrowserRouter>
         <MuiThemeProvider theme={theme}>
           <div>
             <Route exact path="/" component={ProjectPage} />
             <Route exact path="/admin" component={Admin} />
           </div>
         </MuiThemeProvider>
-      </Router>
+      </BrowserRouter>
     );
   }
 }
